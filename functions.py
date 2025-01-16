@@ -30,7 +30,8 @@ import json
 import streamlit as st
 import tempfile
 # Load environment variables from .env file
-
+from pypandoc.pandoc_download import download_pandoc
+download_pandoc()
 def convert_docx_to_text(file):
     """Convert a docx file to plain text using Pandoc."""
     # Save the uploaded file temporarily
