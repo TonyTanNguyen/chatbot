@@ -28,20 +28,23 @@
 import pypandoc
 import json
 import streamlit as st
+import tempfile
 # Load environment variables from .env file
 
 def convert_docx_to_text(file):
     """Convert a docx file to plain text using Pandoc."""
     # Save the uploaded file temporarily
-    with open("temp.docx", "wb") as f:
-        f.write(file.read())
+    # Save the uploaded file temporarily
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".docx") as temp_file:
+        temp_file.write(file.read())
+        temp_file_path = temp_file.name
 
-    # Convert docx to plain text using Pandoc
+    # Convert the document to plain text using pypandoc
     try:
-        output = pypandoc.convert_file("temp.docx", "plain")
+        converted_text = pypandoc.convert_file(temp_file_path, 'plain')
+        return converted_text
     except Exception as e:
-        output = f"Error converting file: {e}"
-    return output
+        st.error(f"An error occurred while converting the file: {e}")
 
 
 def askGPT_fine_turned(content,client):
