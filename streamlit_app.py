@@ -26,17 +26,19 @@ if uploaded_file:
                 with st.container(border = True):
                     st.write(question['question'])
                     options = question['options']
-                    if question['type'] == "checkbox":
+                    if question['type'] in ["checkboxGrid","checkbox","ranking"]:
                         num = 0
                         for i in options:
                             st.checkbox(i,key="check_box_" + str(idx) + "_" + str(num))
                             num += 1
-                    elif "radio" in question['type']:
+                    elif question['type'] in ["radio","radioGrid"]:
                         st.radio('',options,key="radio_" + str(idx))
                     elif question['type'] == "number":
                         st.number_input('',min_value = question['min'] or 0, max_value= question['max'] or 99)
                     elif question['type'] == "text":
                         st.text_input('',key = "text_input_"+ str(idx))
+
+
             st.form_submit_button()
 
 
