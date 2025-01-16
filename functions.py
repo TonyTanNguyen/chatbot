@@ -31,10 +31,8 @@ import streamlit as st
 import tempfile
 # Load environment variables from .env file
 from pypandoc.pandoc_download import download_pandoc
-download_pandoc()
 def convert_docx_to_text(file):
     """Convert a docx file to plain text using Pandoc."""
-    # Save the uploaded file temporarily
     # Save the uploaded file temporarily
     with tempfile.NamedTemporaryFile(delete=False, suffix=".docx") as temp_file:
         temp_file.write(file.read())
@@ -51,7 +49,7 @@ def convert_docx_to_text(file):
 def askGPT_fine_turned(content,client):
     system_message = "You are survey scripting converter, who can read plain text and convert question/options into JSON format."
     completion = client.chat.completions.create(
-    model="ft:gpt-4o-2024-08-06:tgm-research::Ao5kXWYl",
+    model="ft:gpt-4o-2024-08-06:tgm-research::AqHIJ6OU",
     # response_format={"type":"json_object"},
     messages=[
         {"role": "system", "content": system_message},
