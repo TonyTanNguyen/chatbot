@@ -49,7 +49,7 @@ def convert_docx_to_text(file):
 def askGPT_fine_turned(content,client):
     system_message = "You are survey scripting converter, who can read plain text and convert question/options into JSON format."
     completion = client.chat.completions.create(
-    model="ft:gpt-4o-2024-08-06:tgm-research::AqHIJ6OU",
+    model="ft:gpt-4o-2024-08-06:tgm-research::AqXfZUqf",
     # response_format={"type":"json_object"},
     messages=[
         {"role": "system", "content": system_message},
